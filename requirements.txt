@@ -1,0 +1,5 @@
+kivy==2.3.0
+google-cloud-translate==3.11.2
+sounddevice==0.4.6
+numpy==1.26.4
+gtts==2.4.0

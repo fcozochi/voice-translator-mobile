@@ -1,0 +1,46 @@
+[app]
+# Core Configuration
+title = Voice Translator Mobile
+package.name = voicetranslatormobile
+package.domain = com.fcozochi
+version = 0.1
+orientation = portrait
+
+# Docker-Optimized Settings
+source.dir = .
+source.include_exts = py,png,jpg,kv,ttf,json,wav,mp3
+android.archs = arm64-v8a  # NO inline comments here
+android.enable_androidx = True
+android.release_artifact = aab
+
+# Keystore (Docker will inject passwords)
+android.keystore.release = release.keystore
+android.keystore_passwd = ${KEYSTORE_PASS}
+android.keystore_alias = my-key
+android.keystore_alias_passwd = ${ALIAS_PASS}
+
+# Requirements
+requirements = 
+    python3==3.11.6,
+    kivy==2.2.1,
+    sounddevice==0.4.6,
+    numpy==1.26.4,
+    pygame==2.5.2,
+    googletrans==4.0.0-rc1,
+    speechrecognition==3.10.0,
+    gtts==2.4.0,
+    pyjnius==1.5.0,
+    android,
+    openssl==23.0.0,
+    libffi==3.4.4
+
+# Android Config
+android.permissions = INTERNET, RECORD_AUDIO, WRITE_EXTERNAL_STORAGE
+android.api = 34
+android.minapi = 21
+android.ndk = 25b
+
+# Build Settings
+log_level = 2
+warn_on_root = 1
+build.ignore = venv, .git, .github, backups, bin, .buildozer

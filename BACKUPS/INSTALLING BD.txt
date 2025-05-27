@@ -1,0 +1,41 @@
+# Remove all build artifacts
+rm -rf ~/.buildozer .buildozer
+
+# Recreate virtual environment
+deactivate
+rm -rf ~/buildozer_venv
+python3 -m venv ~/buildozer_venv
+
+pip install buildozer
+source ~/buildozer_venv/bin/activate
+
+# Reinstall buildozer with all dependencies
+pip install buildozer appdirs setuptools
+
+# System packages
+sudo apt install -y \
+    python3.12-dev \
+    python3.12-venv \
+    python3.12-distutils \
+    build-essential \
+    openjdk-17-jdk \
+    zlib1g-dev
+
+# Python packages
+pip install --upgrade \
+    setuptools \
+    wheel \
+    appdirs \
+    cython
+
+# Try building again
+# cd ~/projects/voice-translator-mobile
+# buildozer -v android debug
+
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y \
+    python3-pip python3-setuptools python3-venv \
+    build-essential libssl-dev libffi-dev \
+    zlib1g-dev libncurses5-dev libsqlite3-dev \
+    libreadline-dev libbz2-dev

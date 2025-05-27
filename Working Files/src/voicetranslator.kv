@@ -1,0 +1,266 @@
+#:kivy 2.2.1
+#:import RoundedRectangle kivy.graphics.vertex_instructions.RoundedRectangle
+#:import SpinnerOption kivy.uix.spinner.SpinnerOption
+
+#:set BUTTON_RED (0.8, 0.2, 0.2, 1)
+#:set BUTTON_GREEN (0.2, 0.7, 0.3, 1)
+#:set BUTTON_BLUE (0.2, 0.5, 0.8, 1)
+#:set BUTTON_GRAY (0.5, 0.5, 0.5, 1)
+#:set SPINNER_COLOR (0.1, 0.4, 0.8, 1)
+#:set HEADER_BG (0.1, 0.2, 0.4, 1)
+
+<TranslatorApp>:
+    orientation: 'vertical'
+    padding: '25dp'
+    spacing: '6dp'
+    canvas.before:
+        Color:
+            rgba: 0.9, 0.9, 0.9, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [20,]
+
+    Label:
+        text: 'Voice Translator'
+        font_size: '20sp'
+        bold: True
+        color: 1, 1, 1, 1
+        size_hint_y: None
+        height: '40dp'
+        canvas.before:
+            Color:
+                rgba: HEADER_BG
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [15, 15, 15, 15]
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: '40dp'
+        spacing: '8dp'
+
+        Label:
+            text: 'From:'
+            font_size: '17sp'
+            size_hint_x: 1
+            color: 0.2, 0.2, 0.2, 1
+
+        Spinner:
+            id: src_lang
+            text: 'English'
+            values: ['English', 'Spanish','Italian', 'French', 'German', 'Chinese', 'Japanese', 'Russian', 'Arabic', 'Igbo', 'Yoruba', 'Hausa']
+            font_size: '17sp'
+            background_color: SPINNER_COLOR
+            color: 1, 1, 1, 1
+            option_cls: 'SpinnerOption'
+            padding: ('4dp', '2dp')
+            size_hint_x: 2
+            canvas.before:
+                Color:
+                    rgba: SPINNER_COLOR
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10,]
+
+        Label:
+            text: 'To:'
+            font_size: '17sp'
+            size_hint_x: 0.8
+            color: 0.2, 0.2, 0.2, 1
+
+        Spinner:
+            id: dest_lang
+            text: 'Spanish'
+            values: ['English', 'Spanish','Italian', 'French', 'German', 'Chinese', 'Japanese', 'Russian', 'Arabic', 'Igbo', 'Yoruba', 'Hausa']
+            font_size: '17sp'
+            background_color: SPINNER_COLOR
+            color: 1, 1, 1, 1
+            option_cls: 'SpinnerOption'
+            padding: ('4dp', '2dp')
+            size_hint_x: 2
+            canvas.before:
+                Color:
+                    rgba: SPINNER_COLOR
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10,]
+
+    ScrollView:
+        size_hint_y: 0.4
+        bar_width: '6dp'
+        bar_color: 0.5, 0.5, 0.5, 0.8
+        effect_cls: 'ScrollEffect'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [15,]
+        TextInput:
+            id: input_text
+            hint_text: 'Enter text or speak here...'
+            font_size: '17sp'
+            size_hint_y: None
+            height: max(self.minimum_height, dp(150))
+            padding: '8dp'
+            background_color: (0, 0, 0, 0)
+            foreground_color: 0, 0, 0, 1
+            multiline: True
+            scroll_y: 1
+
+    ScrollView:
+        size_hint_y: 0.4
+        bar_width: '6dp'
+        bar_color: 0.5, 0.5, 0.5, 0.8
+        effect_cls: 'ScrollEffect'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [15,]
+        TextInput:
+            id: output_text
+            hint_text: 'Translation will appear here...'
+            font_size: '17sp'
+            size_hint_y: None
+            height: max(self.minimum_height, dp(150))
+            padding: '8dp'
+            background_color: (0, 0, 0, 0)
+            foreground_color: 0, 0, 0, 1
+            multiline: True
+            readonly: True
+            scroll_y: 1
+
+    GridLayout:
+        cols: 2
+        rows: 2
+        spacing: '6dp'
+        size_hint_y: None
+        height: '80dp'
+        padding: '2dp'
+
+        Button:
+            id: record_btn
+            text: '● Record' if not root.recording else '■ Stop'
+            background_color: BUTTON_RED if not root.recording else BUTTON_GRAY
+            background_normal: ''
+            on_release: root.toggle_recording()
+            font_size: '16sp'
+            color: 1, 1, 1, 1
+            bold: True
+            size_hint_y: None
+            height: '38dp'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [12,]
+
+        Button:
+            text: '⇄ Translate'
+            background_color: BUTTON_BLUE
+            background_normal: ''
+            on_release: root.translate_text()
+            font_size: '16sp'
+            color: 1, 1, 1, 1
+            bold: True
+            size_hint_y: None
+            height: '38dp'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [12,]
+
+        Button:
+            text: '► Play Input'
+            background_color: BUTTON_GREEN
+            background_normal: ''
+            on_release: root.play_source_audio()
+            font_size: '16sp'
+            color: 1, 1, 1, 1
+            bold: True
+            size_hint_y: None
+            height: '38dp'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [12,]
+
+        Button:
+            text: '► Play Output'
+            background_color: BUTTON_GREEN
+            background_normal: ''
+            on_release: root.play_translated_audio()
+            font_size: '16sp'
+            color: 1, 1, 1, 1
+            bold: True
+            size_hint_y: None
+            height: '38dp'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [12,]
+
+    Button:
+        text: '✖ Clear All'
+        background_color: BUTTON_GRAY
+        background_normal: ''
+        on_release: root.clear_text()
+        font_size: '16sp'
+        color: 1, 1, 1, 1
+        bold: True
+        size_hint_y: None
+        height: '40dp'
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [12,]
+
+    Label:
+        id: status_label
+        text: root.status_text
+        font_size: '14sp'
+        color: root.status_color
+        size_hint_y: None
+        height: '22dp'
+        halign: 'center'
+        valign: 'middle'
+        text_size: self.size
+
+<SpinnerOption>:
+    background_color: SPINNER_COLOR
+    color: 1, 1, 1, 1
+    padding: ('4dp', '2dp')
+    font_size: '16sp'
+    size_hint_y: None
+    height: '40dp'
+    min_width: '150dp'
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [8,]

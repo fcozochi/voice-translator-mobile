@@ -1,0 +1,130 @@
+cd ~/mnt/e/voice-translator-mobile
+buildozer android clean
+buildozer -v android debug
+================================
+To uninstall OpenJDK 11 from your Ubuntu system, follow these steps:
+
+dpkg --list | grep openjdk-11
+
+sudo apt remove --purge openjdk-11-jre openjdk-11-jdk openjdk-11-jre-headless
+
+sudo apt autoremove
+=============================================
+NAVIGATE TO E DRIVE   cd /mnt/e
+NAIGATE TO E DIRECTORY cd voice-translator-mobile
+COMBINATION  cd /mnt/e/voice-translator-mobile
+==============================================
+
+Uninstall Buildozer via Pip follow the steps
+pip3 uninstall buildozer=== or pip
+rm -rf ~/.buildozer
+rm -rf ~/.buildozer
+# Android SDK/NDK (if you want to delete them)
+rm -rf ~/.buildozer/android/platform
+rm -rf ~/.buildozer/android/ndk
+
+# Optional: Remove Cython (if not needed elsewhere)
+pip3 uninstall cython
+
+=========================================================
+To activate the Buildozer virtual environment (virtualenv), follow these steps:
+
+cd /mnt/e/voice-translator-mobile
+source .buildozer/venv/bin/activate
+
+======correct syntax
+source ~/buildozer_venv/bin/activate  # Global venv
+==================================================
+
+ 
+INSTALL BUILDOZER REQUIREMENTS
+
+# While in the buildozer venv
+pip install setuptools==65.5.0
+
+# If using Python 3.12, downgrade Python (recommended):
+sudo apt install python3.10 python3.10-venv
+python3.10 -m venv .buildozer/venv
+source .buildozer/venv/bin/activate
+pip install buildozer setuptools==65.5.0
+
+# OR if project-specific venv exists:
+
+
+
+source .buildozer/venv/bin/activate
+
+OR
+
+cd /mnt/e/voice-translator-mobile 
+source .buildozer/venv/bin/activate
+
+cd /projects/voice-translator-mobile
+
+
+==================================================
+
+
+sudo chown -R $USER:$USER ~/mnt/e/voice-translator-mobile
+sudo chmod -R 755 ~/mnt/e/voice-translator-mobile
+
+
+===================================================
+SHOW BUILD ERRORS  
+buildozer android debug | grep -i -E 'error|fail|exception|warning'
+
+
+
+Save the log and filter errors afterward:
+
+bash
+# Save full log to a file
+buildozer android debug 2>&1 | tee build.log
+
+# Extract errors from the log
+grep -i -E 'error|fail|exception|warning' build.log
+
+===================================================================
+
+2. Create the Directory
+bash
+# Create the folder (if it doesn't exist)
+sudo mkdir -p /mnt/e/voice-translator-mobile
+
+# Verify creation
+ls -la /mnt/e/voice-translator-mobile
+
+python3 -m pip install --upgrade Cython==0.29.33 virtualenv  # the --user should be removed if you do this in a venv
+
+sudo apt update
+sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+pip3 install --upgrade Cython==0.29.33 virtualenv  
+
+# add the following line at the end of your ~/.bashrc file
+export PATH=$PATH:~/.local/bin/
+
+==================================================
+wsl --import Ubuntu "C:\Users\User\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState" "C:\path\to\backup\ext4.vhdx" --version 2
+
+
+
+
+sudo apt update && sudo apt install -y \
+    python3-pip python3-venv git zip unzip \
+    
+    zlib1g-dev ncurses-dev libffi-dev 
+
+
+# In your project directory
+ls -la my-release-key.jks
+# If missing, regenerate with:
+keytool -genkey -v \
+  -keystore my-release-key.jks \
+  -alias my-alias \
+  -keyalg RSA \
+  -keysize 2048 \
+  -validity 10000 \
+  -storepass fcozochi \
+  -keypass fcozochi 
+
+python3 -m pip install --upgrade Cython==0.29.33 virtualenv 
