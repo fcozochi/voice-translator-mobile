@@ -6,7 +6,7 @@
 Real-time voice translation app supporting 50+ languages, built with Python/Kivy and deployed to Android.
 
 <div align="center">
-  <img src="https://github.com/fcozochi/voice-translator-mobile/blob/main/main.PNG" width="250">
+  <img src="main.PNG" width="250">
   <img src="https://github.com/fcozochi/voice-translator-mobile/blob/main/translation.PNG" width="250">
 </div>
 
